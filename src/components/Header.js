@@ -17,10 +17,4 @@ const HeaderContainer = styled.div`
     top: 0;
     width: 100%;
     z-index: 1;
-
-    h1 {
-        color: #E8833A;
-        font-size: 34px;
-        margin: auto;
-    }
 `;

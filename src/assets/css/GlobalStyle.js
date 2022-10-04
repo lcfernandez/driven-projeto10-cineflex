@@ -53,7 +53,20 @@ const GlobalStyle = createGlobalStyle`
     }
     /* Project additions */
     body {
+        color: #293845;
         font-family: 'Roboto', sans-serif;
+    }
+    h1 {
+        color: #E8833A;
+        font-size: 34px;
+        margin: auto;
+    }
+    h3 {
+        font-size: 24px;
+        font-weight: 400;
+        letter-spacing: 0.04em;
+        line-height: 28px;
+        margin: auto;
     }
 `;
 
