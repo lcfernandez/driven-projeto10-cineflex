@@ -1,12 +1,14 @@
 import ChooseMovie from "./ChooseMovie";
 import GlobalStyle from "../assets/css/GlobalStyle";
-import Header from "./Header";
+import HeaderApp from "./HeaderApp";
+import Movie from "./Movie";
 
 export default function App() {
     return (
         <>
-            <Header />
-            <ChooseMovie />
+            <HeaderApp />
+            {/* <ChooseMovie /> */}
+            <Movie />
             <GlobalStyle />
         </>
     );

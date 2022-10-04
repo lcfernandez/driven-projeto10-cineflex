@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-export default function Header() {
+export default function HeaderApp() {
     return (
-        <HeaderContainer>
+        <HeaderAppContainer>
             <h1>CINEFLEX</h1>
-        </HeaderContainer>
+        </HeaderAppContainer>
     );
 }
 
-const HeaderContainer = styled.div`
+const HeaderAppContainer = styled.header`
     background-color: #C3CFD9;
     display: flex;
     height: 67px;
