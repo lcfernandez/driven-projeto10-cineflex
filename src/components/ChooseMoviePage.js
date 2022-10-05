@@ -5,14 +5,12 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 import styled from "styled-components";
 
-const URL = "https://mock-api.driven.com.br/api/v5/cineflex/";
-
 export default function ChooseMoviePage() {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
 		axios
-            .get(`${URL}/movies`)
+            .get("https://mock-api.driven.com.br/api/v5/cineflex/movies")
             .then(res => {setMovies(res.data);})
             .catch(err => console.error(err));
     }, []);
