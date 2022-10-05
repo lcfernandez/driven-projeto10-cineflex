@@ -7,8 +7,8 @@ export default function App() {
     return (
         <>
             <HeaderApp />
-            {/* <ChooseMovie /> */}
-            <Movie />
+            <ChooseMovie />
+            {/* <Movie /> */}
             <GlobalStyle />
         </>
     );
