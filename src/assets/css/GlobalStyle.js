@@ -64,12 +64,29 @@ const GlobalStyle = createGlobalStyle`
     }
     h2 {
         font-size: 26px;
+        margin: 8px 0;
+    }
+    h3, h4 {
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        line-height: 28px;
     }
     h3 {
+        color: #247A6B;
+        margin: auto;
+        padding: 0 65px;
+        text-align: center;
+    }
+    h4 {
+        margin: 10px 0;
+    }
+    h5 {
         font-size: 24px;
         letter-spacing: 0.04em;
         line-height: 28px;
         margin: auto;
+        text-align: center;
     }
     h6 {
         font-size: 20px;

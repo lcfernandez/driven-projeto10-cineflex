@@ -1,4 +1,4 @@
-import Button from "./Button";
+import ButtonBox from "./ButtonBox";
 import Footer from "./Footer";
 import HeaderAction from "./HeaderAction";
 import Seat from "./Seat";
@@ -9,7 +9,7 @@ export default function SessionPage() {
     return (
         <SessionPageContainer>
             <Main>
-                <HeaderAction action={"Selecione o(s) assento(s)"} />
+                <HeaderAction children={<h5>Selecione o(s) assento(s)</h5>} />
 
                 <Seats>
                     {[
@@ -303,25 +303,13 @@ export default function SessionPage() {
                     <input placeholder="Digite seu CPF..."/>
                 </Info>
 
-                <ButtonContainer>
-                    <Button link="/sucesso" text="Reservar assento(s)" />
-                </ButtonContainer>
+                <ButtonBox link="/sucesso" text="Reservar assento(s)" />
             </Main>
             
             <Footer src={"https://image.tmdb.org/t/p/w500/riYInlsq2kf1AWoGm80JQW5dLKp.jpg"} showtimeName={"15:00"} title={"Enola Holmes"} weekday={"Quinta-feira"} />
         </SessionPageContainer>
     );
 }
-
-const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    width: 100%;
-
-    button {
-        width: 225px;
-    }
-`;
 
 const Info = styled.div`
     display: flex;

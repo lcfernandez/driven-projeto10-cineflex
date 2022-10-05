@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export default function HeaderAction({action}) {
+export default function HeaderAction({children}) {
     return (
         <HeaderActionContainer>
-            <h3>{action}</h3>
+            {children}
         </HeaderActionContainer>
     );
 }

@@ -19,7 +19,7 @@ export default function ChooseMoviePage() {
 
     return (
         <ChooseMoviePageContainer>
-            <HeaderAction action={"Selecione o filme"} />
+            <HeaderAction children={<h5>Selecione o filme</h5>} />
 
             <Posters>
                 {movies.map(
