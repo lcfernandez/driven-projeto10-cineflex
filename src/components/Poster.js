@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Poster({src, title}) {
+export default function Poster({disable, src, title}) {
     return (
-        <Link to={"/filme"}>
+        <Link to={"/filme"} style={disable && {pointerEvents: 'none' }}>
             <PosterContainer
                 alt={`Pôster do filme ${title}`}
                 src={src}

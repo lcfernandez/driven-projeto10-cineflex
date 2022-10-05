@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function Footer({showtimeName, src, title, weekday}) {
     return (
         <FooterContainer>
-            <Poster src={src} title={title}/>
+            <Poster disable={true} src={src} title={title}/>
             <span>
                 <h2>{title}</h2>
                 <h2>{weekday && showtimeName && `${weekday} - ${showtimeName}`}</h2>
