@@ -1,9 +1,47 @@
 import styled from "styled-components";
 
-export default function Seat({colorBack, colorBorder, name}) {
+export default function Seat({legend, seat, selected, setSelected}) {
+    function deSelect() {
+        if (!legend && seat.isAvailable) {
+            if (selected.includes(seat.id)) {
+                setSelected(selected.filter(selectedSeat => selectedSeat !== seat.id),);
+            } else {
+                setSelected([...selected, seat.id]);
+            }
+        }
+    }
+
+    function selectColorBack() {
+        let color;
+
+        if (seat.isAvailable) {
+            color = selected.includes(seat.id) ? "#1AAE9E" : "#C3CFD9";
+        } else {
+            color = "#FBE192";
+        }
+
+        return color;
+    }
+
+    function selectColorBorder() {
+        let color;
+
+        if (seat.isAvailable) {
+            color = selected.includes(seat.id) ? "#0E7D71" : "#808F9D";
+        } else {
+            color = "#F7C52B";
+        }
+
+        return color;
+    }
+
     return (
-        <SeatContainer colorBack={colorBack} colorBorder={colorBorder}>
-            {(Number(name) < 10) ? "0" + name : name}
+        <SeatContainer
+            colorBack={selectColorBack}
+            colorBorder={selectColorBorder}
+            onClick={() => deSelect()}
+        >
+            {(Number(seat.name) < 10) ? "0" + seat.name : seat.name}
         </SeatContainer>
     );
 }

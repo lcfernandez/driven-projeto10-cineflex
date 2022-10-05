@@ -3,9 +3,11 @@ import Footer from "./Footer";
 import HeaderAction from "./HeaderAction";
 import Seat from "./Seat";
 
+import { useState } from "react";
 import styled from "styled-components";
 
 export default function SessionPage() {
+    const [selected, setSelected] = useState([]);
     return (
         <SessionPageContainer>
             <Main>
@@ -266,10 +268,11 @@ export default function SessionPage() {
                     ].map(
                         seat =>
                             <Seat
-                                colorBack={seat.isAvailable ? "#C3CFD9" : "#FBE192"}
-                                colorBorder={seat.isAvailable ? "#808F9D" : "#F7C52B"}
                                 key={seat.id}
-                                name={seat.name}
+                                legend={false}
+                                seat={seat}
+                                selected={selected}
+                                setSelected={setSelected}
                             />
                     )
                     }
@@ -277,19 +280,19 @@ export default function SessionPage() {
 
                 <Legend>
                     <span>
-                        <Seat colorBack={"#1AAE9E"} colorBorder={"#0E7D71"} />
+                        <Seat legend={true} seat={{id: 0, isAvailable: true}} selected={[0]} />
 
                         <div>Selecionado</div>
                     </span>
 
                     <span>
-                        <Seat colorBack={"#C3CFD9"} colorBorder={"#808F9D"} />
+                        <Seat legend={true} seat={{id: 0, isAvailable: true}} selected={[]} />
 
                         <div>Disponível</div>
                     </span>
 
                     <span>
-                        <Seat colorBack={"#FBE192"} colorBorder={"#F7C52B"} />
+                        <Seat legend={true} seat={{id: 0, isAvailable: false}} selected={[]} />
 
                         <div>Indisponível</div>
                     </span>
