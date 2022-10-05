@@ -6,7 +6,7 @@ import axios from "axios";
 import styled from "styled-components";
 
 export default function ChooseMoviePage() {
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState(undefined);
 
     useEffect(() => {
 		axios
@@ -15,13 +15,17 @@ export default function ChooseMoviePage() {
             .catch(err => console.error(err));
     }, []);
 
+    if (!movies) {
+        return "Carregando...";
+    }
+
     return (
         <ChooseMoviePageContainer>
             <HeaderAction children={<h5>Selecione o filme</h5>} />
 
             <Posters>
                 {movies.map(
-                    movie => <Poster key={movie.id} src={movie.posterURL} title={movie.title}/>
+                    movie => <Poster id={movie.id} key={movie.id} src={movie.posterURL} title={movie.title}/>
                 )}
             </Posters>
         </ChooseMoviePageContainer>
