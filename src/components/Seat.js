@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-export default function Seat({name, isAvaiable}) {
+export default function Seat({colorBack, colorBorder, name}) {
     return (
-        <SeatContainer isAvaiable={isAvaiable}>
+        <SeatContainer colorBack={colorBack} colorBorder={colorBorder}>
             {(Number(name) < 10) ? "0" + name : name}
         </SeatContainer>
     );
 }
 
 const SeatContainer = styled.button`
-    background-color: ${({isAvaiable}) => isAvaiable ? "#C3CFD9" : "#FBE192"};
-    border: 1px solid ${({isAvaiable}) => isAvaiable ? "#808F9D" : "#F7C52B"};
+    background-color: ${({colorBack}) => colorBack};
+    border: 1px solid ${({colorBorder}) => colorBorder};
     border-radius: 50%;
     font-family: inherit;
     font-size: 11px;

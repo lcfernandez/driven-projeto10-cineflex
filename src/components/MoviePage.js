@@ -17,4 +17,9 @@ export default function MoviePage() {
 
 const MoviePageContainer = styled.div`
     margin-top: 67px;
+
+    button {
+        margin: 22px 10px 22px 0;
+        width: 82px;
+    }
 `;

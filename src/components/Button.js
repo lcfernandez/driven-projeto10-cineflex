@@ -22,6 +22,4 @@ const ButtonContainer = styled.button`
     height: 43px;
     letter-spacing: 0.02em;
     line-height: 21px;
-    margin: 22px 10px 22px 0;
-    width: 82px;
 `;
