@@ -55,18 +55,35 @@ const GlobalStyle = createGlobalStyle`
     body {
         color: #293845;
         font-family: 'Roboto', sans-serif;
+        padding: 0 24px;
     }
     h1 {
         color: #E8833A;
         font-size: 34px;
         margin: auto;
     }
+    h2 {
+        font-size: 26px;
+    }
     h3 {
         font-size: 24px;
-        font-weight: 400;
         letter-spacing: 0.04em;
         line-height: 28px;
         margin: auto;
+    }
+    h6 {
+        font-size: 20px;
+        line-height: 23px;
+        letter-spacing: 0.02em;
+    }
+    /* box-sizing best practices */
+    html {
+        box-sizing: border-box;
+    }
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
     }
 `;
 

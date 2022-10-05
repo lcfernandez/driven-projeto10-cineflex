@@ -7,30 +7,30 @@ import styled from "styled-components";
 
 const URL = "https://mock-api.driven.com.br/api/v5/cineflex/";
 
-export default function ChooseMovie() {
+export default function ChooseMoviePage() {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-		const promise = axios.get(`${URL}/movies`);
-
-		promise.then(res => {
-			setMovies(res.data);
-		});
-
-        promise.catch(err => console.error(err));
-	}, []);
+		axios
+            .get(`${URL}/movies`)
+            .then(res => {setMovies(res.data);})
+            .catch(err => console.error(err));
+    }, []);
 
     return (
-        <ChooseMovieContainer>
+        <ChooseMoviePageContainer>
             <HeaderAction action={"Selecione o filme"} />
+
             <Posters>
-                {movies.map(movie => <Poster alt="" key={movie.id} src={movie.posterURL} title={movie.title}/>)}
+                {movies.map(
+                    movie => <Poster alt="" key={movie.id} src={movie.posterURL} title={movie.title}/>
+                )}
             </Posters>
-        </ChooseMovieContainer>
+        </ChooseMoviePageContainer>
     );
 }
 
-const ChooseMovieContainer = styled.div`
+const ChooseMoviePageContainer = styled.div`
     margin-top: 67px;
 `;
 
@@ -38,4 +38,9 @@ const Posters = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    img {
+        margin: 0 15px 20px 15px;
+        width: 129px;
+    }
 `;
