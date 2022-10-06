@@ -1,10 +1,10 @@
 import Button from "./Button";
 import styled from "styled-components";
 
-export default function ButtonBox({link, onClick, text}) {
+export default function ButtonBox({ dataIdentifier, link, onClick, text }) {
     return (
         <ButtonBoxContainer>
-            <Button link={link} onClick={onClick} text={text} />
+            <Button dataIdentifier={dataIdentifier} link={link} onClick={onClick} text={text} />
         </ButtonBoxContainer>
     );
 }

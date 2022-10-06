@@ -1,11 +1,11 @@
 import Poster from "./Poster";
 import styled from "styled-components";
 
-export default function Footer({showtimeName, src, title, weekday}) {
+export default function Footer({ showtimeName, src, title, weekday }) {
     return (
         <FooterContainer>
-            <Poster disable={true} src={src} title={title}/>
-            <span>
+            <Poster dataIdentifier="movie-img-preview" disable={true} src={src} title={title}/>
+            <span data-identifier="movie-and-session-infos-preview">
                 <h2>{title}</h2>
                 <h2>{weekday && showtimeName && `${weekday} - ${showtimeName}`}</h2>
             </span>

@@ -17,14 +17,18 @@ export default function SuccessPage(props) {
 
             <section>
                 <h4>Filme e sessão</h4>
-                <div>{seatsInfo.movie.title}</div>
-                {seatsInfo.day.date} {seatsInfo.name}
+                <div data-identifier="movie-session-infos-reserve-finished">
+                    {seatsInfo.movie.title}
+                </div>
+                <div data-identifier="movie-session-infos-reserve-finished">
+                    {seatsInfo.day.date} {seatsInfo.name}
+                </div>
             </section>
 
             <section>
                 <h4>Ingressos</h4>
                 {selected.map(selectedSeat =>
-                    <div key={selectedSeat}>
+                    <div data-identifier="seat-infos-reserve-finished" key={selectedSeat}>
                         Assento {
                             seatsInfo.seats
                                 .filter(seat => seat.id === selectedSeat)
@@ -36,11 +40,15 @@ export default function SuccessPage(props) {
 
             <section>
                 <h4>Comprador</h4>
-                <div>Nome: {name}</div>
-                CPF: {cpf}
+                <div data-identifier="buyer-infos-reserve-finished">
+                    Nome: {name}
+                </div>
+                <div data-identifier="buyer-infos-reserve-finished">
+                    CPF: {cpf}
+                </div>
             </section>
 
-            <ButtonBox link="/" text="Voltar para Home" />
+            <ButtonBox dataIdentifier="back-to-home-btn" link="/" text="Voltar para Home" />
         </SuccessPageContainer>
     );
 }

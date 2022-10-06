@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Button({link, onClick, text}) {
+export default function Button({ dataIdentifier, link, onClick, text }) {
     return (
-        <Link to={link} onClick={onClick}>
-            <ButtonContainer>
+        <Link to={link}>
+            <ButtonContainer data-identifier={dataIdentifier} onClick={onClick}>
                 {text}
             </ButtonContainer>
         </Link>

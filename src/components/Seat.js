@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function Seat({legend, seat, selected, setSelected}) {
+export default function Seat({ dataIdentifier, legend, seat, selected, setSelected }) {
     function deSelect() {
         if (!legend) {
             if (seat.isAvailable) {
@@ -43,6 +43,7 @@ export default function Seat({legend, seat, selected, setSelected}) {
         <SeatContainer
             colorBack={selectColorBack}
             colorBorder={selectColorBorder}
+            data-identifier={dataIdentifier}
             legend={legend}
             onClick={() => deSelect()}
         >

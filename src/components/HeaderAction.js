@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function HeaderAction({children}) {
+export default function HeaderAction({ children }) {
     return (
         <HeaderActionContainer>
             {children}

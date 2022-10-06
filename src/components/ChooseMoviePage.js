@@ -25,7 +25,7 @@ export default function ChooseMoviePage() {
 
             <Posters>
                 {movies.map(
-                    movie => <Poster id={movie.id} key={movie.id} src={movie.posterURL} title={movie.title}/>
+                    movie => <Poster dataIdentifier="movie-outdoor" id={movie.id} key={movie.id} src={movie.posterURL} title={movie.title}/>
                 )}
             </Posters>
         </ChooseMoviePageContainer>

@@ -55,6 +55,7 @@ export default function SessionPage(props) {
                     {seatsInfo.seats.map(
                         seat =>
                             <Seat
+                                dataIdentifier="seat"
                                 key={seat.id}
                                 legend={false}
                                 seat={seat}
@@ -66,19 +67,34 @@ export default function SessionPage(props) {
 
                 <Legend>
                     <span>
-                        <Seat legend={true} seat={{id: 0, isAvailable: true}} selected={[0]} />
+                        <Seat
+                            dataIdentifier="seat-selected-subtitle"
+                            legend={true}
+                            seat={{id: 0, isAvailable: true}}
+                            selected={[0]}
+                        />
 
                         <div>Selecionado</div>
                     </span>
 
                     <span>
-                        <Seat legend={true} seat={{id: 0, isAvailable: true}} selected={[]} />
+                        <Seat
+                            dataIdentifier="seat-available-subtitle"
+                            legend={true}
+                            seat={{id: 0, isAvailable: true}}
+                            selected={[]}
+                        />
 
                         <div>Disponível</div>
                     </span>
 
                     <span>
-                        <Seat legend={true} seat={{id: 0, isAvailable: false}} selected={[]} />
+                        <Seat
+                            dataIdentifier="seat-unavailable-subtitle"
+                            legend={true}
+                            seat={{id: 0, isAvailable: false}}
+                            selected={[]}
+                        />
 
                         <div>Indisponível</div>
                     </span>
@@ -86,13 +102,26 @@ export default function SessionPage(props) {
 
                 <Info>
                     Nome do comprador:
-                    <input onChange={e => setName(e.target.value)} placeholder="Digite seu nome..." />
+                    <input
+                        data-identifier="buyer-name-input"
+                        onChange={e => setName(e.target.value)}
+                        placeholder="Digite seu nome..."
+                    />
 
                     CPF do comprador:
-                    <input onChange={e => setCpf(e.target.value)} placeholder="Digite seu CPF..."/>
+                    <input
+                        data-identifier="buyer-cpf-input"
+                        onChange={e => setCpf(e.target.value)}
+                        placeholder="Digite seu CPF..."
+                    />
                 </Info>
 
-                <ButtonBox link="/sucesso" onClick={reserveSeats} text="Reservar assento(s)" />
+                <ButtonBox
+                    dataIdentifier="reservation-btn"
+                    link="/sucesso"
+                    onClick={reserveSeats}
+                    text="Reservar assento(s)"
+                />
             </Main>
             
             <Footer src={seatsInfo.movie.posterURL} showtimeName={seatsInfo.name} title={seatsInfo.movie.title} weekday={seatsInfo.day.weekday} />
