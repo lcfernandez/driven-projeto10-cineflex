@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Button({link, text}) {
+export default function Button({link, onClick, text}) {
     return (
-        <Link to={link}>
+        <Link to={link} onClick={onClick}>
             <ButtonContainer>
                 {text}
             </ButtonContainer>

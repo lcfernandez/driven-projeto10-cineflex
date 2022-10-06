@@ -4,24 +4,46 @@ import HeaderAction from "./HeaderAction";
 import Seat from "./Seat";
 
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-export default function SessionPage() {
-    const { sessionId } = useParams();
-    const [seatsInfo, setSeatsInfo] = useState(undefined);
-    const [selected, setSelected] = useState([]);
+export default function SessionPage(props) {
+    const {
+        cpf,
+        name,
+        seatsInfo,
+        selected,
+        setCpf,
+        setName,
+        setSeatsInfo,
+        setSelected
+    } = props;
+
+    const { idSessao } = useParams();
 
     useEffect(() => {
 		axios
-            .get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessionId}/seats`)
+            .get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`)
             .then(res => setSeatsInfo(res.data))
             .catch(err => console.error(err))
     }, []);
 
     if (!seatsInfo) {
         return "Carregando...";
+    }
+
+    function reserveSeats() {
+        const obj = {
+            ids: selected,
+            name: name,
+            cpf: cpf
+        };
+
+        axios
+            .post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, obj)
+            .then(res => console.log(res.data))
+            .catch(err => console.error(err));
     }
 
     return (
@@ -64,13 +86,13 @@ export default function SessionPage() {
 
                 <Info>
                     Nome do comprador:
-                    <input placeholder="Digite seu nome..." />
+                    <input onChange={e => setName(e.target.value)} placeholder="Digite seu nome..." />
 
                     CPF do comprador:
-                    <input placeholder="Digite seu CPF..."/>
+                    <input onChange={e => setCpf(e.target.value)} placeholder="Digite seu CPF..."/>
                 </Info>
 
-                <ButtonBox link="/sucesso" text="Reservar assento(s)" />
+                <ButtonBox link="/sucesso" onClick={reserveSeats} text="Reservar assento(s)" />
             </Main>
             
             <Footer src={seatsInfo.movie.posterURL} showtimeName={seatsInfo.name} title={seatsInfo.movie.title} weekday={seatsInfo.day.weekday} />

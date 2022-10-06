@@ -2,11 +2,15 @@ import styled from "styled-components";
 
 export default function Seat({legend, seat, selected, setSelected}) {
     function deSelect() {
-        if (!legend && seat.isAvailable) {
-            if (selected.includes(seat.id)) {
-                setSelected(selected.filter(selectedSeat => selectedSeat !== seat.id),);
+        if (!legend) {
+            if (seat.isAvailable) {
+                if (selected.includes(seat.id)) {
+                    setSelected(selected.filter(selectedSeat => selectedSeat !== seat.id),);
+                } else {
+                    setSelected([...selected, seat.id]);
+                }
             } else {
-                setSelected([...selected, seat.id]);
+                alert("Esse assento não está disponível.");
             }
         }
     }
@@ -39,6 +43,7 @@ export default function Seat({legend, seat, selected, setSelected}) {
         <SeatContainer
             colorBack={selectColorBack}
             colorBorder={selectColorBorder}
+            legend={legend}
             onClick={() => deSelect()}
         >
             {(Number(seat.name) < 10) ? "0" + seat.name : seat.name}
@@ -50,6 +55,7 @@ const SeatContainer = styled.button`
     background-color: ${({colorBack}) => colorBack};
     border: 1px solid ${({colorBorder}) => colorBorder};
     border-radius: 50%;
+    cursor: ${({legend}) => legend ? "default" : "pointer"};
     font-family: inherit;
     font-size: 11px;
     height: 26px;

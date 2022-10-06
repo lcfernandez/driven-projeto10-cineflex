@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export default function Poster({disable, id, src, title}) {
     return (
-        <Link to={`/filme/${id}`} style={disable && {pointerEvents: 'none' }}>
+        <Link to={`/sessoes/${id}`} style={disable && {pointerEvents: 'none' }}>
             <PosterContainer
                 alt={`Pôster do filme ${title}`}
                 src={src}

@@ -6,11 +6,9 @@ import styled from "styled-components";
 export default function SuccessPage(props) {
     const {
         cpf,
-        date,
-        title,
         name,
-        seats,
-        sessionName
+        seatsInfo,
+        selected
     } = props;
 
     return (
@@ -19,25 +17,27 @@ export default function SuccessPage(props) {
 
             <section>
                 <h4>Filme e sessão</h4>
-                {/* {title}
-                {date} {sessionName} */}
-                <div>Enola Holmes</div>
-                <div>24/06/2021 15:00</div>
+                <div>{seatsInfo.movie.title}</div>
+                {seatsInfo.day.date} {seatsInfo.name}
             </section>
 
             <section>
                 <h4>Ingressos</h4>
-                {/* {seats.map(seat => <div key={seat.id} >Assento {seat.id}</div>)} */}
-                <div>Assento 15</div>
-                <div>Assento 16</div>
+                {selected.map(selectedSeat =>
+                    <div key={selectedSeat}>
+                        Assento {
+                            seatsInfo.seats
+                                .filter(seat => seat.id === selectedSeat)
+                                .map(seat => seat.name)
+                        }
+                    </div>
+                )}
             </section>
 
             <section>
                 <h4>Comprador</h4>
-                {/*Nome: {name}
-                CPF: {cpf} */}
-                <div>Nome: João da Silva Sauro</div>
-                <div>CPF: 123.456.789-10</div>
+                <div>Nome: {name}</div>
+                CPF: {cpf}
             </section>
 
             <ButtonBox link="/" text="Voltar para Home" />
@@ -54,7 +54,7 @@ const SuccessPageContainer = styled.div`
     }
 
     section {
-        height: 110px;
+        min-height: 110px;
 
         div {
             margin: 4px 0;

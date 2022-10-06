@@ -8,12 +8,12 @@ import axios from "axios";
 import styled from "styled-components";
 
 export default function MoviePage() {
-    const { movieId } = useParams();
+    const { idFilme } = useParams();
     const [movieInfo, setMovieInfo] = useState(undefined);
 
     useEffect(() => {
 		axios
-            .get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${movieId}/showtimes`)
+            .get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`)
             .then(res => setMovieInfo(res.data))
             .catch(err => console.error(err))
     }, []);

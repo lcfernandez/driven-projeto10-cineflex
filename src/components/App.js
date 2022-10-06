@@ -6,17 +6,41 @@ import SessionPage from "./SessionPage";
 import SuccessPage from "./SuccessPage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 export default function App() {
+    const [cpf, setCpf] = useState(undefined);
+    const [name, setName] = useState(undefined);
+    const [seatsInfo, setSeatsInfo] = useState(undefined);
+    const [selected, setSelected] = useState([]);
+
     return (
         <BrowserRouter>
             <HeaderApp />
 
             <Routes>
                 <Route path="/" element={<ChooseMoviePage />} />
-				<Route path="/filme/:movieId" element={<MoviePage /> }/>
-                <Route path="/sessao/:sessionId" element={<SessionPage /> }/>
-                <Route path="/sucesso" element={<SuccessPage /> }/>
+				<Route path="/sessoes/:idFilme" element={<MoviePage />}/>
+                <Route path="/assentos/:idSessao" element={
+                    <SessionPage
+                        cpf={cpf}
+                        name={name}
+                        seatsInfo={seatsInfo}
+                        selected={selected}
+                        setCpf={setCpf}
+                        setName={setName}
+                        setSeatsInfo={setSeatsInfo}
+                        setSelected={setSelected}
+                    />
+                } />
+                <Route path="/sucesso" element={
+                    <SuccessPage
+                        cpf={cpf}
+                        name={name}
+                        seatsInfo={seatsInfo}
+                        selected={selected}
+                    />
+                }/>
             </Routes>
 
             <GlobalStyle />
