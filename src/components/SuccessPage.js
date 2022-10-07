@@ -42,10 +42,10 @@ export default function SuccessPage(props) {
             <section>
                 <h4>Comprador</h4>
                 <div data-identifier="buyer-infos-reserve-finished">
-                    Nome: {name}
+                    Nome: {name ? name : "não informado"}
                 </div>
                 <div data-identifier="buyer-infos-reserve-finished">
-                    CPF: {cpf}
+                    CPF: {cpf ? cpf : "não informado"}
                 </div>
             </section>
 

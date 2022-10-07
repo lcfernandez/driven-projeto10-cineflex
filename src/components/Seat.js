@@ -5,7 +5,7 @@ export default function Seat({ dataIdentifier, legend, seat, selected, setSelect
         if (!legend) {
             if (seat.isAvailable) {
                 if (selected.includes(seat.id)) {
-                    setSelected(selected.filter(selectedSeat => selectedSeat !== seat.id),);
+                    setSelected(selected.filter(selectedSeat => selectedSeat !== seat.id));
                 } else {
                     setSelected([...selected, seat.id]);
                 }
@@ -47,7 +47,7 @@ export default function Seat({ dataIdentifier, legend, seat, selected, setSelect
             legend={legend}
             onClick={() => deSelect()}
         >
-            {(Number(seat.name) < 10) ? "0" + seat.name : seat.name}
+            {(Number(seat.name) < 10) ? `0${seat.name}` : seat.name}
         </SeatContainer>
     );
 }

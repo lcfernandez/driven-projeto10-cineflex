@@ -2,8 +2,8 @@ import Footer from "./Footer";
 import HeaderAction from "./HeaderAction";
 import Session from "./Session";
 
+import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from 'react';
 import axios from "axios";
 import styled from "styled-components";
 

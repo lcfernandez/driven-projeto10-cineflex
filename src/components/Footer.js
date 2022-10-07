@@ -1,4 +1,5 @@
 import Poster from "./Poster";
+
 import styled from "styled-components";
 
 export default function Footer({ showtimeName, src, title, weekday }) {

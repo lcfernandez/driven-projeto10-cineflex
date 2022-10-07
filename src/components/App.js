@@ -5,7 +5,7 @@ import MoviePage from "./MoviePage";
 import SessionPage from "./SessionPage";
 import SuccessPage from "./SuccessPage";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
 export default function App() {

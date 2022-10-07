@@ -1,7 +1,7 @@
 import HeaderAction from "./HeaderAction";
 import Poster from "./Poster";
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from "styled-components";
 
@@ -25,7 +25,14 @@ export default function ChooseMoviePage() {
 
             <Posters>
                 {movies.map(
-                    movie => <Poster dataIdentifier="movie-outdoor" id={movie.id} key={movie.id} src={movie.posterURL} title={movie.title}/>
+                    movie =>
+                        <Poster
+                            dataIdentifier="movie-outdoor"
+                            id={movie.id}
+                            key={movie.id}
+                            src={movie.posterURL}
+                            title={movie.title}
+                        />
                 )}
             </Posters>
         </ChooseMoviePageContainer>

@@ -3,8 +3,8 @@ import Footer from "./Footer";
 import HeaderAction from "./HeaderAction";
 import Seat from "./Seat";
 
-import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -33,21 +33,21 @@ export default function SessionPage(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (!seatsInfo) {
-        return "Carregando...";
-    }
-
     function reserveSeats() {
         const body = {
             ids: selected,
-            name: name,
-            cpf: cpf
+            name,
+            cpf
         };
 
         axios
             .post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, body)
             .then(res => console.log(res.data))
             .catch(err => console.error(err.response.data));
+    }
+
+    if (!seatsInfo) {
+        return "Carregando...";
     }
 
     return (
@@ -109,6 +109,7 @@ export default function SessionPage(props) {
                     <input
                         data-identifier="buyer-name-input"
                         onChange={e => setName(e.target.value)}
+                        type="text"
                         placeholder="Digite seu nome..."
                     />
 
@@ -116,6 +117,7 @@ export default function SessionPage(props) {
                     <input
                         data-identifier="buyer-cpf-input"
                         onChange={e => setCpf(e.target.value)}
+                        type="text"
                         placeholder="Digite seu CPF..."
                     />
                 </Info>
@@ -128,7 +130,12 @@ export default function SessionPage(props) {
                 />
             </Main>
             
-            <Footer src={seatsInfo.movie.posterURL} showtimeName={seatsInfo.name} title={seatsInfo.movie.title} weekday={seatsInfo.day.weekday} />
+            <Footer
+                showtimeName={seatsInfo.name}
+                src={seatsInfo.movie.posterURL}
+                title={seatsInfo.movie.title}
+                weekday={seatsInfo.day.weekday}
+            />
         </SessionPageContainer>
     );
 }
