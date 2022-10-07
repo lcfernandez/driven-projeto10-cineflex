@@ -26,7 +26,11 @@ export default function SessionPage(props) {
 		axios
             .get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`)
             .then(res => setSeatsInfo(res.data))
-            .catch(err => console.error(err))
+            .catch(err => console.error(err.response.data));
+
+        /* the commentary below is necessary to fix the
+        "React Hook useEffect has a missing dependency" warning: */
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (!seatsInfo) {
@@ -34,16 +38,16 @@ export default function SessionPage(props) {
     }
 
     function reserveSeats() {
-        const obj = {
+        const body = {
             ids: selected,
             name: name,
             cpf: cpf
         };
 
         axios
-            .post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, obj)
+            .post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, body)
             .then(res => console.log(res.data))
-            .catch(err => console.error(err));
+            .catch(err => console.error(err.response.data));
     }
 
     return (

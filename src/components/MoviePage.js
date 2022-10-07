@@ -15,7 +15,11 @@ export default function MoviePage() {
 		axios
             .get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`)
             .then(res => setMovieInfo(res.data))
-            .catch(err => console.error(err))
+            .catch(err => console.error(err.response.data));
+
+        /* the commentary below is necessary to fix the
+        "React Hook useEffect has a missing dependency" warning: */
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (!movieInfo) {

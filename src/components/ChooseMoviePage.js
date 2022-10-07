@@ -12,7 +12,7 @@ export default function ChooseMoviePage() {
 		axios
             .get("https://mock-api.driven.com.br/api/v5/cineflex/movies")
             .then(res => {setMovies(res.data);})
-            .catch(err => console.error(err));
+            .catch(err => console.error(err.response.data));
     }, []);
 
     if (!movies) {

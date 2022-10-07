@@ -27,14 +27,15 @@ export default function SuccessPage(props) {
 
             <section>
                 <h4>Ingressos</h4>
-                {selected.map(selectedSeat =>
-                    <div data-identifier="seat-infos-reserve-finished" key={selectedSeat}>
-                        Assento {
-                            seatsInfo.seats
-                                .filter(seat => seat.id === selectedSeat)
-                                .map(seat => seat.name)
-                        }
-                    </div>
+                {selected.map(
+                    selectedSeat =>
+                        <div data-identifier="seat-infos-reserve-finished" key={selectedSeat}>
+                            Assento {
+                                seatsInfo.seats
+                                    .filter(seat => seat.id === selectedSeat)
+                                    .map(seat => seat.name)
+                            }
+                        </div>
                 )}
             </section>
 
