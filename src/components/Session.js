@@ -1,4 +1,4 @@
-import Button from "./Button";
+import ButtonSmall from "./ButtonSmall";
 
 export default function Session({ date, showtimes, weekday }) {
     return (
@@ -6,7 +6,7 @@ export default function Session({ date, showtimes, weekday }) {
             <h6 data-identifier="session-date">{weekday} - {date}</h6>
             {showtimes.map(
                 showtime =>
-                    <Button
+                    <ButtonSmall
                         dataIdentifier="hour-minute-btn"
                         key={showtime.id}
                         link={`/assentos/${showtime.id}`}

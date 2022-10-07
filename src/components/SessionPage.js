@@ -1,10 +1,10 @@
-import ButtonBox from "./ButtonBox";
+import ButtonLarge from "./ButtonLarge";
 import Footer from "./Footer";
 import HeaderAction from "./HeaderAction";
 import Seat from "./Seat";
 
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -19,8 +19,9 @@ export default function SessionPage(props) {
         setSeatsInfo,
         setSelected
     } = props;
-
+    
     const { idSessao } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
 		axios
@@ -33,7 +34,9 @@ export default function SessionPage(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    function reserveSeats() {
+    function reserveSeats(e) {
+        e.preventDefault(); // prevent form redirect
+        
         const body = {
             ids: selected,
             name,
@@ -42,12 +45,16 @@ export default function SessionPage(props) {
 
         axios
             .post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, body)
-            .then(res => console.log(res.data))
+            .then(navigate("/sucesso"))
             .catch(err => console.error(err.response.data));
     }
 
     if (!seatsInfo) {
-        return "Carregando...";
+        return (
+            <SessionPageContainer>
+                Carregando...
+            </SessionPageContainer>
+        );
     }
 
     return (
@@ -104,30 +111,31 @@ export default function SessionPage(props) {
                     </span>
                 </Legend>
 
-                <Info>
-                    Nome do comprador:
+                <Form onSubmit={reserveSeats}>
+                    <label htmlFor="nome">Nome do comprador:</label>
                     <input
                         data-identifier="buyer-name-input"
+                        id="nome"
                         onChange={e => setName(e.target.value)}
                         type="text"
                         placeholder="Digite seu nome..."
                     />
 
-                    CPF do comprador:
+                    <label htmlFor="cpf">CPF do comprador:</label>
                     <input
                         data-identifier="buyer-cpf-input"
+                        id="cpf"
                         onChange={e => setCpf(e.target.value)}
                         type="text"
                         placeholder="Digite seu CPF..."
                     />
-                </Info>
 
-                <ButtonBox
-                    dataIdentifier="reservation-btn"
-                    link="/sucesso"
-                    onClick={reserveSeats}
-                    text="Reservar assento(s)"
-                />
+                    <ButtonLarge
+                        dataIdentifier="reservation-btn"
+                        text="Reservar assento(s)"
+                        type="submit"
+                    />
+                </Form>
             </Main>
             
             <Footer
@@ -140,7 +148,7 @@ export default function SessionPage(props) {
     );
 }
 
-const Info = styled.div`
+const Form = styled.form`
     display: flex;
     flex-direction: column;
     margin: 40px auto;

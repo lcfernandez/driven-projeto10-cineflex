@@ -16,7 +16,11 @@ export default function ChooseMoviePage() {
     }, []);
 
     if (!movies) {
-        return "Carregando...";
+        return (
+            <ChooseMoviePageContainer>
+                Carregando...
+            </ChooseMoviePageContainer>
+        );
     }
 
     return (

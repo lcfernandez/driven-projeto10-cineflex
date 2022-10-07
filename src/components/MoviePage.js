@@ -23,7 +23,11 @@ export default function MoviePage() {
     }, []);
 
     if (!movieInfo) {
-        return "Carregando...";
+        return (
+            <MoviePageContainer>
+                Carregando...
+            </MoviePageContainer>
+        );
     }
 
     return (

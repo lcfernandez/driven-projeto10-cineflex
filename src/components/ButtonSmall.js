@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Button({ dataIdentifier, link, onClick, text }) {
+export default function ButtonSmall({ dataIdentifier, link, onClick, text }) {
     return (
         <Link to={link}>
-            <ButtonContainer data-identifier={dataIdentifier} onClick={onClick}>
+            <ButtonSmallContainer data-identifier={dataIdentifier} onClick={onClick}>
                 {text}
-            </ButtonContainer>
+            </ButtonSmallContainer>
         </Link>
     );
 }
 
-const ButtonContainer = styled.button`
+const ButtonSmallContainer = styled.button`
     background-color: #E8833A;
     border: none;
     border-radius: 3px;

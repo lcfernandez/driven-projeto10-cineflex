@@ -20,7 +20,7 @@ export default function App() {
 
             <Routes>
                 <Route path="/" element={<ChooseMoviePage />} />
-				<Route path="/sessoes/:idFilme" element={<MoviePage />}/>
+				<Route path="/sessoes/:idFilme" element={<MoviePage />} />
                 <Route path="/assentos/:idSessao" element={
                     <SessionPage
                         cpf={cpf}
@@ -39,8 +39,12 @@ export default function App() {
                         name={name}
                         seatsInfo={seatsInfo}
                         selected={selected}
+                        setCpf={setCpf}
+                        setName={setName}
+                        setSeatsInfo={setSeatsInfo}
+                        setSelected={setSelected}
                     />
-                }/>
+                } />
             </Routes>
 
             <GlobalStyle />
