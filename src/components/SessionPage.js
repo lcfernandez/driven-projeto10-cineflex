@@ -3,7 +3,9 @@ import Footer from "./Footer";
 import HeaderAction from "./HeaderAction";
 import Seat from "./Seat";
 
-import { useEffect } from "react";
+import Spinner from "../assets/css/Spinner";
+
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
@@ -23,11 +25,22 @@ export default function SessionPage(props) {
     const { idSessao } = useParams();
     const navigate = useNavigate();
 
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
+        if (selected.length) {
+            setSelected([]);
+        }
+
 		axios
             .get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`)
             .then(res => setSeatsInfo(res.data))
-            .catch(err => console.error(err.response.data));
+            .catch(
+                (err) => {
+                    alert("Houve algum problema! Tente novamente mais tarde ou selecione outra sessão.");
+                    console.error(err.response.data);
+                }
+            );
 
         /* the commentary below is necessary to fix the
         "React Hook useEffect has a missing dependency" warning: */
@@ -37,23 +50,31 @@ export default function SessionPage(props) {
     function reserveSeats(e) {
         e.preventDefault(); // prevent form redirect
         
-        const body = {
-            ids: selected,
-            name,
-            cpf
-        };
+        if (selected.length) {
+            setLoading(true);
 
-        axios
-            .post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, body)
-            .then(navigate("/sucesso"))
-            .catch(err => console.error(err.response.data));
+            const body = {
+                ids: selected,
+                name,
+                cpf
+            };
+
+            axios
+                .post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, body)
+                .then(() => navigate("/sucesso"))
+                .catch(
+                    (err) => {
+                        alert("Houve algum problema! Tente novamente mais tarde ou selecione outro(s) assento(s).");
+                        console.error(err.response.data);
+                        setLoading(false);
+                    }
+                );
+        }
     }
 
-    if (!seatsInfo) {
+    if (!seatsInfo || loading) {
         return (
-            <SessionPageContainer>
-                Carregando...
-            </SessionPageContainer>
+            <Spinner />
         );
     }
 
@@ -125,6 +146,7 @@ export default function SessionPage(props) {
                     <input
                         data-identifier="buyer-cpf-input"
                         id="cpf"
+                        maxLength="14"
                         onChange={e => setCpf(e.target.value)}
                         type="text"
                         placeholder="Digite seu CPF..."

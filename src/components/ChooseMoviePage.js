@@ -1,6 +1,8 @@
 import HeaderAction from "./HeaderAction";
 import Poster from "./Poster";
 
+import Spinner from "../assets/css/Spinner";
+
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from "styled-components";
@@ -12,14 +14,17 @@ export default function ChooseMoviePage() {
 		axios
             .get("https://mock-api.driven.com.br/api/v5/cineflex/movies")
             .then(res => {setMovies(res.data);})
-            .catch(err => console.error(err.response.data));
+            .catch(
+                (err) => {
+                    alert("Houve algum problema! Tente novamente mais tarde.");
+                    console.error(err.response.data);
+                }
+            );
     }, []);
 
     if (!movies) {
         return (
-            <ChooseMoviePageContainer>
-                Carregando...
-            </ChooseMoviePageContainer>
+            <Spinner />
         );
     }
 

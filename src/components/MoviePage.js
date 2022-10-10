@@ -2,6 +2,8 @@ import Footer from "./Footer";
 import HeaderAction from "./HeaderAction";
 import Session from "./Session";
 
+import Spinner from "../assets/css/Spinner";
+
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -15,7 +17,12 @@ export default function MoviePage() {
 		axios
             .get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`)
             .then(res => setMovieInfo(res.data))
-            .catch(err => console.error(err.response.data));
+            .catch(
+                (err) => {
+                    alert("Houve algum problema! Tente novamente mais tarde ou selecione outro filme.");
+                    console.error(err.response.data);
+                }
+            );
 
         /* the commentary below is necessary to fix the
         "React Hook useEffect has a missing dependency" warning: */
@@ -24,9 +31,7 @@ export default function MoviePage() {
 
     if (!movieInfo) {
         return (
-            <MoviePageContainer>
-                Carregando...
-            </MoviePageContainer>
+            <Spinner />
         );
     }
 

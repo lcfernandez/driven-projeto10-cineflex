@@ -1,3 +1,11 @@
+# driven-projeto10-cineflex
+
+* **Projeto #10 - Cineflex** do aluno Luiz Cláudio F. Fernandez, Turma 8 da Driven.
+
+* **Deploy** (vulgo *Link da Titia*): https://driven-projeto10-cineflex.vercel.app/
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
