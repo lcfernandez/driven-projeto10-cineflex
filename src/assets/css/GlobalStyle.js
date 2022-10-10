@@ -102,6 +102,13 @@ const GlobalStyle = createGlobalStyle`
     *:after {
         box-sizing: inherit;
     }
+    /* removes tooltips from icons */
+    ion-icon:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
 `;
 
 export default GlobalStyle;
